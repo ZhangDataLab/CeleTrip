@@ -1,34 +1,26 @@
-\# TKGAT
-
-
+# TKGAT
 
 Description of this project
 
 
 
-\- Celebrity Trip Dataset
+- Celebrity Trip Dataset
+- TKGAT model
+- trips_visualization
 
-\- TKGAT model
-
-\- trips_visualization
-
-
-
-\## Dataset
+## Dataset
 
 This is the dataset of celebrity trips.
 
 
 
-\## TKGAT Model
+## TKGAT Model
 
 This is the implementation of TKGAT.
 
 
 
-\## Trips Visualization
-
-
+## Trips Visualization
 
 We provide a tool to visualize
 
