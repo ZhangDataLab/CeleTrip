@@ -22,6 +22,4 @@ This is the implementation of TKGAT.
 
 ## Trips Visualization
 
-We provide a tool to visualize
-
-the result of our trip-extraction model TKGAT.
+We provide a tool to visualize the result of our trip-extraction model TKGAT.
