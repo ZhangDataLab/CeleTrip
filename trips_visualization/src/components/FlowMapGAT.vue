@@ -67,7 +67,7 @@ export default {
 
     mounted(){
       var FlowMap = this;
-      axios.get("http://124.223.93.31:20512/api/get_gat_person_itin_by_time",{params:{name:'Vladimir Putin', time_start:'2019-07', time_end:'2022-01'}})
+      axios.get("http://xxx.xxx.xxx.xxx/api/get_gat_person_itin_by_time",{params:{name:'Vladimir Putin', time_start:'2019-07', time_end:'2022-01'}})
           .then((res) => {
         let capital = res['data']['capital'];
         let process_res = FlowMap.processItins(capital, res['data']['itins_pm']);
@@ -76,10 +76,7 @@ export default {
       });
     },
     methods:{
-      ifDisabledDate(){
-        ;
-      },
-      
+
       queryItin() {
         let s_year = this.month_range[0].getFullYear();
         let s_month = (this.month_range[0].getMonth() + 1).toString();
@@ -97,7 +94,7 @@ export default {
 
         let FlowMap = this;
         let person_name = this.person_name;
-        axios.get("http://124.223.93.31:20512/api/get_gat_person_itin_by_time",{params:{name:person_name, time_start:time_start, time_end:time_end}})
+        axios.get("http://xxx.xxx.xxx.xxx/api/get_gat_person_itin_by_time",{params:{name:person_name, time_start:time_start, time_end:time_end}})
           .then((res) => {
           let capital = res['data']['capital'];
           let process_res = FlowMap.processItins(capital, res['data']['itins_pm']);
@@ -115,7 +112,6 @@ export default {
       },
 
       drawMap(person_name, capital, geoCoordMap, itinFrames, month_list){
-        // refer: https://segmentfault.com/a/1190000022593794
         document.getElementById('echartsMap').removeAttribute('_echarts_instance_');
         let chart = echarts.init(document.getElementById('echartsMap'));
 

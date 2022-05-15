@@ -40,7 +40,7 @@ export default defineComponent({
     },
     mounted(){
       var thisPage = this;
-      axios.get("http://124.223.93.31:20512/api/get_itin_info",{params:{
+      axios.get("http://xxx.xxx.xxx.xxx/api/get_itin_info",{params:{
         name: thisPage.$route.params.name, loc: thisPage.$route.params.address,
         time_start: thisPage.$route.params.sm, time_end: thisPage.$route.params.em}})
           .then((res) => {
