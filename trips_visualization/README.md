@@ -2,11 +2,11 @@
 
 ## Intro
 
-We develop a visualization tool to show the results of the proposed trip detection method. Due to the demand for Anonymity, here we provide the source code of the visualization tool, which is developed by Vuejs, and remove the API interface from the codes as well.
+We develop a visualization tool to show the results of the proposed trip detection method, click [this](http://itin.joycez.xyz/). Here we provide the source code of the visualization tool, which is developed by Vuejs, and remove the API interface from the codes as well.
 
 ## Display
 
-Since we anonymized the API interface, the process of interactive visualization can not work locally. The integral effect of this tool is shown in the *.gif* below.
+In addition to try real-time interactions on web pages, the process of interactive visualization is shown in the *.gif* below.
 
 ### Features
 
