@@ -2,7 +2,8 @@
 
 ## Intro
 
-We develop a visualization tool to show the results of the proposed trip detection method, click [here](http://itin.joycez.xyz/)! In this directory we provide the source code of the visualization tool, which is developed by Vuejs.
+We develop a visualization tool to show the results of the proposed trip detection method, click [here](http://itin.joycez.xyz/)!   
+In this directory we provide the source code of the visualization tool, which is developed by Vuejs.
 
 ## Display
 
