@@ -1,5 +1,3 @@
-# 构建相应的dataset
-# 合并好这几个结果，然后丢进模型里边
 import os
 from random import shuffle
 import pandas as pd
@@ -42,16 +40,6 @@ sub_graph_save_path 是子图的边路径
 entity_save_path是实体的保存路径
 event_save_path是事件的保存路径
 '''
-# main_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/properties/train_main_graph_properties.pkl'
-# main_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/train_date_graph/'
-
-# sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/sub_train_properties/'
-# sub_graph_save_path =  '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/sub_train_graph/'
-
-# entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/train_entity_features/'
-# event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/train_event_features/'
-
-# word_embeddings_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/wordvector/trip_corpus.model'
 
 class SyntheticDataset(DGLDataset):
     def __init__(self,main_graph_properties_path,
@@ -68,10 +56,10 @@ class SyntheticDataset(DGLDataset):
         self.event_save_path = event_save_path
         self.main_date_graph_path = main_date_graph_path
         self.word_embedding_path = word_embedding_path
-        self.event_freq_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/properties/event_freq_features.pkl'
-        self.ent_feature_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/data/ent_openke_feature.pkl'
-        self.rel_feature_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/data/rel_openke_feature.pkl'
-        self.ent_rel_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/data/ent_rel_dict.pkl'
+        self.event_freq_path = '/graph_data/properties/event_freq_features.pkl'
+        self.ent_feature_path = 'data/ent_openke_feature.pkl'
+        self.rel_feature_path = 'data/rel_openke_feature.pkl'
+        self.ent_rel_path = 'data/ent_rel_dict.pkl'
         super().__init__(name='synthetic')
     
     def process(self):
@@ -148,12 +136,7 @@ class SyntheticDataset(DGLDataset):
                 sub_graph.ndata['attr'] = torch.Tensor(sub_graph_features)
                 sub_graph_list.append(sub_graph)
                 
-                
-            '''
-            读取这一天下的实体和事件特征
-            entity_features的维度是 entity_num x entity_dim
-            event_features是dict，其中每个键是事件的index，值为 sen_num x sen_dim
-            '''
+               
             date_graph_entity_features = load_pkl(self.entity_save_path+str(mcnt)+'.pkl')
             sub_entity_graph_list = []
             sub_entity_feature_list = []
@@ -179,11 +162,6 @@ class SyntheticDataset(DGLDataset):
                     rel_src_list.append(rel_idx)
                     rel_dst_list.append(rel_idx+rel_num)
                     rel_idx+=1
-#                 print('SRC List : ',one_src_list)
-#                 print('DST List : ',one_dst_list)
-#                 print('REL list : ',rel_src_list)
-#                 print('REL list2 : ',rel_dst_list)
-#                 print('The number of REL',rel_num)
                 egraph = dgl.DGLGraph()
                 egraph.add_nodes(node_idx)
                 egraph.add_edges(one_src_list,one_dst_list)
@@ -236,12 +214,7 @@ class SyntheticDataset(DGLDataset):
             
             name_features = np.array(name_features).mean(axis=0)# 1x100
             
-    
-            #########################################################################################
-            '''
-            主图以同构图的方式连接
-            msgl,mndl,medl,mendl  主图的子图列表，节点字典，事件节点，实体节点
-            '''
+   
             main_graph_edges = pd.read_csv(self.main_date_graph_path+str(mcnt)+'.csv')
             main_src = main_graph_edges['src'].to_numpy()
             main_dst = main_graph_edges['dst'].to_numpy()
@@ -272,6 +245,3 @@ class SyntheticDataset(DGLDataset):
     
     def __len__(self):
         return len(self.graphs)
-
-if __name__ =='__main__':
-    data = SyntheticDataset(main_graph_properties_path,main_date_graph_path,sub_graph_properties_path,sub_graph_save_path,entity_save_path,event_save_path,word_embeddings_path)
