@@ -46,130 +46,32 @@ def load_pkl(path):
 
 class Config:
     device = 'cuda:0'
-    # ######################################################################################
-    # train_main_properties =  '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/properties/train_main_graph_properties.pkl'
-    # test_main_properties = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/properties/test_main_graph_properties.pkl'
-    
-    # train_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/train_date_graph/'
-    # test_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/test_date_graph/'
-
-    # train_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/sub_train_graph/'
-    # test_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/sub_test_graph/'
-
-    # train_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/sub_train_properties/'
-    # test_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/sub_test_properties/'
-
-    # train_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/train_entity_features/'
-    # train_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/train_event_features/'
-
-    # test_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/test_entity_features/'
-    # test_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data/test_event_features/'
-    
-    # best_model_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/best_models/best_model_1.bin'
-    # pic_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/pic/train_loss_fig_1.png'
-    # log_file = './log/log_test_1.txt'
-    # event_file = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/event_sentence_weight/event_sentence_weight_1.pkl'
-    # ########################################################################################
-
-    # ######################################################################################
-    # train_main_properties =  '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/properties/train_main_graph_properties.pkl'
-    # test_main_properties = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/properties/test_main_graph_properties.pkl'
-    
-    # train_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/train_date_graph/'
-    # test_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/test_date_graph/'
-
-    # train_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/sub_train_graph/'
-    # test_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/sub_test_graph/'
-
-    # train_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/sub_train_properties/'
-    # test_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/sub_test_properties/'
-
-    # train_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/train_entity_features/'
-    # train_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/train_event_features/'
-
-    # test_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/test_entity_features/'
-    # test_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data2/test_event_features/'
-    # best_model_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/best_models/best_model_subg.bin'
-    # pic_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/pic/train_loss_subg_fig.png'
-    # log_file = './log/log_test_2.txt'
-    # event_file = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/event_sentence_weight/event_sentence_weight_subg.pkl'
-    # ########################################################################################
-
-    ######################################################################################
-    # train_main_properties =  '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/properties/train_main_graph_properties.pkl'
-    # test_main_properties = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/properties/test_main_graph_properties.pkl'
-    
-    # train_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/train_date_graph/'
-    # test_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/test_date_graph/'
-
-    # train_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/sub_train_graph/'
-    # test_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/sub_test_graph/'
-
-    # train_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/sub_train_properties/'
-    # test_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/sub_test_properties/'
-
-    # train_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/train_entity_features/'
-    # train_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/train_event_features/'
-
-    # test_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/test_entity_features/'
-    # test_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data3/test_event_features/'
-    # best_model_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/best_models/best_model_3.bin'
-    # pic_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/pic/train_loss_subg_fig_3.png'
-    # log_file = './log/log_test_3.txt'
-    # event_file = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/event_sentence_weight/event_sentence_weight_subg_3.pkl'
     ########################################################################################
-
-    ######################################################################################
-    # train_main_properties =  '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/properties/train_main_graph_properties.pkl'
-    # test_main_properties = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/properties/test_main_graph_properties.pkl'
+    train_main_properties =  'graph_data5/properties/train_main_graph_properties.pkl'
+    test_main_properties = 'graph_data5/properties/test_main_graph_properties.pkl'
     
-    # train_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/train_date_graph/'
-    # test_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/test_date_graph/'
+    train_date_graph_path = 'graph_data5/train_date_graph/'
+    test_date_graph_path = 'graph_data5/test_date_graph/'
 
-    # train_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/sub_train_graph/'
-    # test_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/sub_test_graph/'
+    train_sub_graph_save_path = 'graph_data5/sub_train_graph/'
+    test_sub_graph_save_path = 'graph_data5/sub_test_graph/'
 
-    # train_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/sub_train_properties/'
-    # test_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/sub_test_properties/'
+    train_sub_graph_properties_path = 'graph_data5/sub_train_properties/'
+    test_sub_graph_properties_path = 'graph_data5/sub_test_properties/'
 
-    # train_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/train_entity_features/'
-    # train_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/train_event_features/'
+    train_entity_save_path = 'graph_data5/train_entity_features/'
+    train_event_save_path = 'graph_data5/train_event_features/'
 
-    # test_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/test_entity_features/'
-    # test_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data4/test_event_features/'
-    # best_model_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/best_models/best_model_4.bin'
-    # pic_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/pic/train_loss_subg_fig_4.png'
-    # log_file = './log/log_test_4.txt'
-    # event_file = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/event_sentence_weight/event_sentence_weight_subg_4.pkl'
-    ########################################################################################
-
-    ########################################################################################
-    train_main_properties =  '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/properties/train_main_graph_properties.pkl'
-    test_main_properties = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/properties/test_main_graph_properties.pkl'
+    test_entity_save_path = 'graph_data5/test_entity_features/'
+    test_event_save_path = 'graph_data5/test_event_features/'
     
-    train_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/train_date_graph/'
-    test_date_graph_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/test_date_graph/'
-
-    train_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/sub_train_graph/'
-    test_sub_graph_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/sub_test_graph/'
-
-    train_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/sub_train_properties/'
-    test_sub_graph_properties_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/sub_test_properties/'
-
-    train_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/train_entity_features/'
-    train_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/train_event_features/'
-
-    test_entity_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/test_entity_features/'
-    test_event_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/graph_data5/test_event_features/'
-    
-    best_model_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/best_models/best_model_5_5_5_5.bin'
-    pic_save_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/pic/train_loss_fig_5_5_5_5.png'
+    best_model_path = 'best_models/best_model_5_5_5_5.bin'
+    pic_save_path = 'pic/train_loss_fig_5_5_5_5.png'
     log_file = './log/log_test_5_5_5.txt'
-    event_file = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/event_sentence_weight/event_sentence_weight_5_5_5_5.pkl'
+    event_file = 'event_sentence_weight/event_sentence_weight_5_5_5_5.pkl'
     ########################################################################################
 
-    word_embeddings_path = '/public/home/pengkai/Itinerary_Miner/HeteroTrip/wordvector/trip_corpus.model'
-    # graph 3 2 256 64 100 256 100 256 100 256 256 100 256 2 8 0 0 0.2
+    word_embeddings_path = 'wordvector/trip_corpus.model'
     output_dim = 2
     mg_in_dim = 128
     mg_out_dim=128
