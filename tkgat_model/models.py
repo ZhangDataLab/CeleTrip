@@ -22,14 +22,6 @@ from torch.utils.data.sampler import SubsetRandomSampler
 
 from dgl.nn.pytorch import GATConv
 
-'''
-传入主图mg_dim
-子图列表sg_dim
-人名特征na_dim
-事件特征ev_dim
-实体特征en_dim
-'''
-
 class GATLayer(nn.Module):
     def __init__(self, in_feats, out_feats, num_heads, feat_drop, attn_drop,
                  alpha=0.2, residual=True, agg_modes='flatten'):
@@ -59,23 +51,14 @@ class SemanticAttention(nn.Module):
             nn.Linear(hidden_size,1,bias=False)
         )
     def forward(self,z,device):    
-        # print('The size of z input : ',z.size())# 50 x 100
         w = self.project(z)            
         each_layer_weight = w.detach().cpu().numpy()
-        # print('The weight of w : ',w[:5])
 
-        beta = torch.softmax(w, dim=0)# 50 x 1
-        # print('The size of beta : ',beta[:5])
-        beta = beta.expand(z.shape[0],z.shape[1]) # 50x100
-        # beta = torch.where(torch.isnan(beta),beta,(torch.tensor([0]).to(device)).float())
-        # print('The size of beta weight : ',beta.size())# 50 x 100
-        return (beta * z).sum(0),each_layer_weight# return 100
+        beta = torch.softmax(w, dim=0)
+        beta = beta.expand(z.shape[0],z.shape[1])
+        return (beta * z).sum(0),each_layer_weight
 
-'''
-outputs是输出的维度
-mg_dim是主图的特征维度
-mg_out是主图的隐藏层维度
-'''
+
 class HoTripGraph(nn.Module):
     def __init__(self,outputs,
                  mg_dim,mg_out,
@@ -85,7 +68,6 @@ class HoTripGraph(nn.Module):
                  en_dim,en_out,
                  num_layers,num_heads,feat_drops,attn_drops,alphas,residuals,agg_modes,activations=None):
         super(HoTripGraph,self).__init__()
-        # 定义子图的图学习
         self.subg_list = nn.ModuleList()
         for i in range(num_layers):
             self.subg_list.append(GATLayer(sg_dim,sg_out,num_heads,feat_drops,attn_drops,alphas,residuals,agg_modes='flatten'))
@@ -106,12 +88,7 @@ class HoTripGraph(nn.Module):
         self.en_layer = nn.Linear(en_dim,en_out)
         self.en_compgcn = CompGCNCov(in_channels=50,out_channels=en_out)
         self.en_dim = en_out
-
-
-        # 定义人名
         self.na_layer = nn.Linear(na_dim,na_out)
-        
-        # 定义主图层
         self.mg_list = nn.ModuleList()
         for i in range(num_layers):
             self.mg_list.append(GATLayer(mg_dim,mg_out,num_heads,feat_drops,attn_drops,alphas,residuals,agg_modes='flatten'))
@@ -119,8 +96,6 @@ class HoTripGraph(nn.Module):
                 mg_dim = mg_out*num_heads
             else:
                 mg_dim = mg_out
-        # self.mg_classifier2 = nn.Linear(mg_out*num_heads*2,outputs)
-        # 定义主图的分类器
         self.mg_classifier = nn.Linear(mg_out*num_heads,outputs)
         
     def forward(self,mgraph,subgraph_list,na_feature,event_feature,entity_features,event_freq_feature,entity_graph_list,entity_graph_features_list,device='cuda'):
@@ -158,10 +133,6 @@ class HoTripGraph(nn.Module):
                 eve_feat = self.ea_linear_layer(eve_feat)
                 eve_feat = F.relu(eve_feat)
 
-                #######################################################
-                '''
-                需要用到freq的话就加这段
-                '''
                 eve_freq = eve_freq.to(device)
                 eve_freq = eve_freq.unsqueeze(0)
                 eve_freq = self.ev_freq_layer(eve_freq.float())
@@ -170,7 +141,6 @@ class HoTripGraph(nn.Module):
                 #######################################################
 
                 event_result.append(eve_feat)
-            # print('The length of event sentence : ',len(event_sentence_weight))
             eve_feat = torch.cat(event_result)
             ############################################################################
 
@@ -199,10 +169,8 @@ class HoTripGraph(nn.Module):
                 one_ent_feat = F.relu(x_feat)
                 en_feat_list.append(one_ent_feat[0].unsqueeze(0))
 
-            # print('en_feat_list [0] ',en_feat_list[0].size())# 1 x 128
             en_feat = torch.cat(en_feat_list)
-            
-            # print('after cat : ',en_feat.size())# num_entity x 128
+
         ###########################################################
 
         '''
@@ -218,10 +186,8 @@ class HoTripGraph(nn.Module):
             main_node_features = torch.cat([main_node_features,en_feat],dim=0)
         
         for mgal in self.mg_list:
-#             print('1',main_node_features.size())
             mgraph = mgraph.to(device)
             main_node_features = mgal(mgraph,main_node_features)
-#             print('1',main_node_features.size())
             main_node_features = F.relu(main_node_features)
         trip_tup = main_node_features[:len(subgraph_list)]
 
@@ -255,24 +221,24 @@ def rfft(x,d):
 def irfft(x,d,signal_sizes):
     return irfft2(torch.complex(x[:,:,0],x[:,:,1]),s=signal_sizes,dim=(-d))
 
-
+'''
+This layer is referred to the CompGCN implemented in DGL: https://github.com/toooooodo/CompGCN-DGL.git
+'''
 class CompGCNCov(nn.Module):
     def __init__(self, in_channels, out_channels, act=lambda x: x, bias=True, drop_rate=0., opn='corr', num_base=-1,
                  num_rel=None):
         super(CompGCNCov, self).__init__()
         self.in_channels = in_channels
         self.out_channels = out_channels
-        self.act = act  # activation function
+        self.act = act
         self.device = None
         self.rel = None
         self.opn = opn
-
-        # relation-type specific parameter
         self.in_w = self.get_param([in_channels, out_channels])
         self.out_w = self.get_param([in_channels, out_channels])
         self.loop_w = self.get_param([in_channels, out_channels])
-        self.w_rel = self.get_param([in_channels, out_channels])  # transform embedding of relations to next layer
-        self.loop_rel = self.get_param([1, in_channels])  # self-loop embedding
+        self.w_rel = self.get_param([in_channels, out_channels]) 
+        self.loop_rel = self.get_param([1, in_channels]) 
 
         self.drop = nn.Dropout(drop_rate)
         self.bn = torch.nn.BatchNorm1d(out_channels)
@@ -290,18 +256,10 @@ class CompGCNCov(nn.Module):
     def message_func(self, edges: dgl.udf.EdgeBatch):
         edge_type = edges.data['type']  # [E, 1]
         edge_num = edge_type.shape[0]
-        # print('edge _type ',type(edge_type))
-        # print('edge tpye ',edge_type)
-        # print(self.rel[edge_type].size())
-        edge_data = self.comp(edges.src['h'], self.rel[edge_type])  # [E, in_channel]
-        # msg = torch.bmm(edge_data.unsqueeze(1),
-        #                 self.w[edge_dir.squeeze()]).squeeze()  # [E, 1, in_c] @ [E, in_c, out_c]
-        # msg = torch.bmm(edge_data.unsqueeze(1),
-        #                 self.w.index_select(0, edge_dir.squeeze())).squeeze()  # [E, 1, in_c] @ [E, in_c, out_c]
-        # NOTE: first half edges are all in-directions, last half edges are out-directions.
+        edge_data = self.comp(edges.src['h'], self.rel[edge_type]) 
         msg = torch.cat([torch.matmul(edge_data[:edge_num // 2, :], self.in_w),
                          torch.matmul(edge_data[edge_num // 2:, :], self.out_w)])
-        msg = msg * edges.data['norm'].reshape(-1, 1)  # [E, D] * [E, 1]
+        msg = msg * edges.data['norm'].reshape(-1, 1)  
         return {'msg': msg}
 
     def reduce_func(self, nodes: dgl.udf.NodeBatch):
@@ -354,56 +312,4 @@ class CompGCNCov(nn.Module):
         if self.bias is not None:
             x = x + self.bias
         x = self.bn(x)
-        # 边只更新一次，集
         return self.act(x), torch.matmul(self.rel, self.w_rel)
-
-
-
-
-###################################################################################
-def matrix_mul(input, weight, bias=False):
-    feature_list = []
-    for feature in input:
-        feature = torch.mm(feature, weight)# 10x100
-        if isinstance(bias, torch.nn.parameter.Parameter):
-            feature = feature + bias.expand(feature.size()[0], bias.size()[1])
-        feature = torch.tanh(feature).unsqueeze(0)# 1x10x100
-        feature_list.append(feature)
-    res = torch.cat(feature_list, 0).squeeze()
-    return res
-
-def element_wise_mul(input1, input2):
-
-    feature_list = []
-    for feature_1, feature_2 in zip(input1, input2):
-        feature_2 = feature_2.unsqueeze(1).expand_as(feature_1)
-        feature = feature_1 * feature_2
-        feature_list.append(feature.unsqueeze(0))
-    output = torch.cat(feature_list, 0)
-
-    return torch.sum(output, 0).unsqueeze(0)
-
-class EventSentence(nn.Module):
-    def __init__(self,ev_in_size,ev_out_size,hidden_size=32):
-        super(EventSentence,self).__init__()
-        self.sent_weight = nn.Parameter(torch.Tensor(ev_in_size,hidden_size))
-        self.sent_bias = nn.Parameter(torch.Tensor(1,hidden_size))
-        self.context_weight = nn.Parameter(torch.Tensor(hidden_size,1))
-        self.fc = nn.Linear(ev_in_size,ev_out_size)
-        self._create_weights(mean=0.0,std=0.05)
-
-    def _create_weights(self,mean=0.0,std=0.05):
-        self.sent_weight.data.normal_(mean, std)
-        self.context_weight.data.normal_(mean, std)
-    
-    def forward(self,inputs):
-        outputs = matrix_mul(inputs,self.sent_weight,self.sent_bias)
-        res = matrix_mul(outputs,self.context_weight)
-        outputs = res.permute(1,0)
-        res = res.detach().cpu().numpy()
-        outputs = F.softmax(outputs)
-        outputs = element_wise_mul(inputs,outputs.permute(1,0)).squeeze(0)
-        outputs = self.fc(outputs)
-        return outputs,res
-###################################################################################
-       
