@@ -324,7 +324,7 @@ if __name__=='__main__':
             best_predict = test_score
             pred_result = pd.DataFrame(test_predict,columns=['pred'])
             pred_result['label'] = test_labels
-            pred_result.to_csv('/public/home/pengkai/Itinerary_Miner/HeteroTrip/data/pred_best.csv',index=False,encoding='utf-8')
+            pred_result.to_csv('/data/pred_best.csv',index=False,encoding='utf-8')
             save_pkl(config.event_file,test_event_sentences_weight)
     accuracy_list = np.array(accuracy_list)
     precision_list = np.array(precision_list)
