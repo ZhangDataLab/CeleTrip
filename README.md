@@ -1,4 +1,4 @@
-# TKGAT
+# CeleTrip
 
 Description of this project
 
