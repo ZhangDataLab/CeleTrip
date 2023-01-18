@@ -18,15 +18,12 @@ The code has been successfully tested in the following environment. (For older d
  - PyTorch 1.11.0
  - dgl 0.9.0
  - Sklearn 1.1.2
- - Pandas 1.4.3
- - SpaCy 3.4.0
- - 
+ - SpaCy 3.2.1
+ - SpaCy en-core-web-trf 3.2.0
+ - Gensim 3.8.3
+ - nltk 3.6.5
 
 ## Getting Started
-
-### Prepare your data
-1. 
-
 
 ### Training CeleTrip
 
