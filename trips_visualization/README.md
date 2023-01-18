@@ -16,6 +16,8 @@ In addition to try real-time interactions on web pages, the process of interacti
 3. Double click a target location, and users can view this politician's trip records to this place, while 'Wiki Label' indicates whether a record is included in Wikipedia.
 4. Unfold the drop-down menu, and focal sentences from news related to this trip are given as well as their sources link. Users can also valid this trip by themselves.
 
+**Notice:**  Please select the time between 07/2019~02/2021, because we visualize the results on the test set.
+
 ![demo_of_viz_tool](demo/viz_tool.gif)
 
 As shown in the picture, we choose *Donald Trump* and his trip records from 2019.07 to 2020.12. Then we view Trump's trips to West Palm Beach and check the news related to a trip in 2019.12.20.
