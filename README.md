@@ -25,12 +25,20 @@ The code has been successfully tested in the following environment. (For older d
 
 ## Getting Started
 
+
+
 ### Training CeleTrip
+
+Please run following commands for building graph.
+```python
+python build_multilocation_graph.py
+```
 
 Please run following commands for training.
 ```python
-CUDA_VISIBLE_DEVICES="0,1,2,3" torchrun --nproc_per_node=4 chgat.py --task='chgat'
+python main_celetrip.py
 ```
+
 
 ### Preprocessing Tools
 
