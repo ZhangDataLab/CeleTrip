@@ -2,10 +2,7 @@
 This is the source code for paper 'Where Did the President Visit Last Week? Detecting Celebrity Trips from News Articles'.
 
 ## Celebrity Trip Dataset
-We provide a real-word celebrity trip dataset in file `Celebrity Trip Dataset`. We collecte the trips of 26 politicians and 24 artists from January 2016 to February 2021 from [Wikipedia](https://www.wikipedia.org/), and obtain the date and locations. Afterwards, we crawl 2,617,548 news URLs from 01/2016 to 02/2021 from [GDELT](https://www.gdeltproject.org/), and get news articles using URLs from [Newspaper3k](https://github.com/codelucas/newspaper). 
-
-We label trip locations and non-trip locations from the news articles, using the ground truth trip locations of celebrities provided by Wikipedia. Each row provides the celebrity name, location name, date, articles, and label. You can download the dataset from the link [google driver](www.bing.com).
-
+We provide a real-word celebrity trip dataset in file `Celebrity Trip Dataset`. We collecte the trips of 26 politicians and 24 artists from January 2016 to February 2021 from [Wikipedia](https://www.wikipedia.org/), and obtain the date and locations. Afterwards, we crawl 2,617,548 news URLs from 01/2016 to 02/2021 from [GDELT](https://www.gdeltproject.org/), and get news articles using URLs from [Newspaper3k](https://github.com/codelucas/newspaper). We label trip locations and non-trip locations from the news articles, using the ground truth trip locations of celebrities provided by Wikipedia.
 
 
 ## CeleTrip Model
@@ -25,7 +22,13 @@ The code has been successfully tested in the following environment. (For older d
 
 ## Getting Started
 
+### Prepare data
 
+You can download the dataset from the link [google driver](https://drive.google.com/drive/folders/1bdD3hkuTm2Z92pNX5_ryX2IZsiLPuV-5?usp=sharing). We provide a sample of our dataset.
+
+| label	| name |	date |	location |	clean_sen_list |	ent_list |	url_list	| article |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| True | Donald Trump | 2017-01-21 | Langley | Trump also speak of the crowd size on Saturday while speak at CIA headquarters in Langley , Va. Todd on Sunday say tell falsehood " undermine the credibility " of the White House press shop . | [['Trump', 'PERSON'], ['Saturday', 'DATE'], ['CIA', 'ORG'], ['Langley', 'GPE'], ['Va.', 'GPE'], ['Todd', 'PERSON'], ['Sunday', 'DATE'], ['White House', 'ORG']] | 'https://www.buzzfeednews.com/article/nancyyoussef/trump-brings-politics-to-the-cia' | ['Trump bring politic to the CIA .', "WASHINGTON — member of the national security community react with shock on Saturday after President Donald Trump ’s inaugural visit to CIA headquarters in which he use a speech in front of the agency 's memorial to attack the medium and his critic .", ... ]| 
 
 ### Training CeleTrip
 
