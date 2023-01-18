@@ -1,6 +1,56 @@
-# CeleTrip
+## CeleTrip (Celebrity Trip Detection Framework)
+This is the source code for paper 'Where Did the President Visit Last Week? Detecting Celebrity Trips from News Articles'.
 
-Description of this project
+## Celebrity Trip Dataset
+We provide a real-word celebrity trip dataset in file `Celebrity Trip Dataset`. We collecte the trips of 26 politicians and 24 artists from January 2016 to February 2021 from [Wikipedia](https://www.wikipedia.org/), and obtain the date and locations. Afterwards, we crawl 2,617,548 news URLs from 01/2016 to 02/2021 from [GDELT](https://www.gdeltproject.org/), and get news articles using URLs from [Newspaper3k](https://github.com/codelucas/newspaper). 
+
+We label trip locations and non-trip locations from the news articles, using the ground truth trip locations of celebrities provided by Wikipedia. Each row provides the celebrity name, location name, date, articles, and label. You can download the dataset from the link [google driver](www.bing.com).
+
+
+
+## CeleTrip Model
+
+### Prerequisites
+
+The code has been successfully tested in the following environment. (For older dgl versions, you may need to modify the code)
+
+ - Python 3.8.1
+ - PyTorch 1.11.0
+ - dgl 0.9.0
+ - Sklearn 1.1.2
+ - Pandas 1.4.3
+ - SpaCy 3.4.0
+ - 
+
+## Getting Started
+
+### Prepare your data
+1. 
+
+
+### Training CeleTrip
+
+Please run following commands for training.
+```python
+CUDA_VISIBLE_DEVICES="0,1,2,3" torchrun --nproc_per_node=4 chgat.py --task='chgat'
+```
+
+### Preprocessing Tools
+
+We open source our preprocessing tool using in our framework, these tools can parse dates and extract locations from numerous articles. 
+
+## Trips Visualization
+
+We provide a [tool](http://itin.joycez.xyz/) to visualize the result of our trip-extraction model CeleTrip.
+
+
+## Cite
+Please cite our paper if you find this code useful for your research:
+
+
+
+
+<!-- Description of this project
 
 
 
@@ -22,4 +72,4 @@ This is the implementation of TKGAT.
 
 ## Trips Visualization
 
-We provide a [tool](http://itin.joycez.xyz/) to visualize the result of our trip-extraction model TKGAT.
+We provide a [tool](http://itin.joycez.xyz/) to visualize the result of our trip-extraction model TKGAT. -->
