@@ -9,7 +9,7 @@ DateExtractor.py
 ## Extraction Tools for Locations
 
 ```bash
-LocationFilter
+LocationFilter.py
 ```
 
 ## Dependence
