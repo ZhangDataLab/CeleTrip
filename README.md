@@ -25,8 +25,9 @@ The code has been successfully tested in the following environment. (For older d
 ### Prepare data
 
 You can download the dataset from the link [google driver](https://drive.google.com/drive/folders/1bdD3hkuTm2Z92pNX5_ryX2IZsiLPuV-5?usp=sharing). We provide a sample of our dataset.
-| Celebrity | Location | Date | Article | Label|
-| --- | --- | --- | --- | --- | --- | --- | --- |
+
+| Celebrity | Location | Date | Article | Label |
+| --- | --- | --- | --- | --- |
 | Donald Trump | Langley | 2017-01-21 | ['Trump bring politic to the CIA .', "WASHINGTON — member of the national security community react with shock on Saturday after President Donald Trump ’s inaugural visit to CIA headquarters in which he use a speech in front of the agency 's memorial to attack the medium and his critic .", ... ] | True |
 
 <!-- | label	| name |	date |	location |	clean_sen_list |	ent_list |	url_list	| article |
@@ -50,10 +51,10 @@ python main_celetrip.py
 
 We open source our preprocessing tool using in our framework, these tools can parse dates and extract locations from numerous articles. 
 
-## Trips Visualization
+<!-- ## Trips Visualization
 
 We provide a [tool](http://itin.joycez.xyz/) to visualize the result of our trip-extraction model CeleTrip.
-
+ -->
 
 ## Cite
 Please cite our paper if you find this code useful for your research:
