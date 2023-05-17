@@ -51,11 +51,6 @@ python main_celetrip.py
 
 We open source our preprocessing tool using in our framework, these tools can parse dates and extract locations from numerous articles. 
 
-<!-- ## Trips Visualization
-
-We provide a [tool](http://itin.joycez.xyz/) to visualize the result of our trip-extraction model CeleTrip.
- -->
-
 ## Cite
 Please cite our paper if you find this code useful for your research:
 
