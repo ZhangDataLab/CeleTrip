@@ -53,8 +53,8 @@ from math import radians, cos, sin, asin, sqrt
 random_seed = 42
 def seed_everything(seed=random_seed):
     '''
-    固定随机种子
-    :param random_seed: 随机种子数目
+    fix random seed
+    :param random_seed:
     :return:
     '''
     random.seed(seed) # Python random module
@@ -322,7 +322,7 @@ class Word_Doc_Block_Simple(nn.Module):
 class SemanticAttention(nn.Module):
     """
     For Event Feature
-    句子注意力层的写法
+    Attention Module
     @refer
     [1] Listening to Chaotic Whispers: A Deep Learning Framework for News-oriented Stock Trend Prediction (WSDM2018)
     [2] Heterogeneous Graph Attention Network (WWW2019)

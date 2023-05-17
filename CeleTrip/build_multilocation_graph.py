@@ -263,7 +263,7 @@ def generate_graph(data,event_sentence_dict,config,article_features_dict,word_mo
         entity_list = one_df['entity'].tolist()
         event_list =one_df['event'].tolist()
         
-        #--------------------- 地点的索引 ---------------------#
+        #--------------------- index for location ---------------------#
         node_dict = {}
         node_idx = 0
         start_loc = node_idx
@@ -275,7 +275,7 @@ def generate_graph(data,event_sentence_dict,config,article_features_dict,word_mo
     
         
 
-        #-------------------- 事件index ---------------------#
+        #-------------------- index for event ---------------------#
         event_dict  ={}
         event_sen = {}
         start_event = node_idx
@@ -379,7 +379,7 @@ def generate_graph(data,event_sentence_dict,config,article_features_dict,word_mo
 
         date_graph_list = []
         sub_graph_properties = []
-        for i,(sen,doc,loc) in enumerate(zip(sen_list,doc_list,loc_list)):# sen_list这里就有对应的人物和地点
+        for i,(sen,doc,loc) in enumerate(zip(sen_list,doc_list,loc_list)): # sen_list
             sub_row,sub_col,sub_weight,word_id_map,id_word_map,_,_,sub_number_nodes,doc_num,word_features,doc_features = build_text_graph(sen,doc,window_size,article_features_dict,word_model)
             sub_word_graph_dict[cnt] = {}
             sub_word_graph_dict[cnt]['row'] = sub_row
