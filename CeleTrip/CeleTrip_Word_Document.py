@@ -21,13 +21,7 @@ from dgl.dataloading import GraphDataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 
 from dgl.nn.pytorch import GATConv
-'''
-传入主图mg_dim
-子图列表sg_dim
-人名特征na_dim
-事件特征ev_dim
-实体特征en_dim
-'''
+
 class GATLayer(nn.Module):
     def __init__(self, in_feats, out_feats, num_heads, feat_drop, attn_drop,
                  alpha=0.2, residual=True, agg_modes='flatten'):
