@@ -1,6 +1,11 @@
 ## CeleTrip (Celebrity Trip Detection Framework)
 This is the source code for paper 'Where Did the President Visit Last Week? Detecting Celebrity Trips from News Articles'.
 
+## Abstract
+Celebrities’ whereabouts are of pervasive importance. For instance, where politicians go, how often they visit, and who they meet, come with profound geopolitical and economic implications. Although news articles contain travel information of celebrities, it is not possible to perform large-scale and network-wise analysis due to the lack of automatic itinerary detection tools. To design such tools, we have to overcome difficulties from the heterogeneity among news articles: 1) One single article can be noisy, with irrelevant people and locations, especially when the articles are long. 2) Though it may be helpful if we consider multiple articles together to determine a particular trip, the key semantics are still scattered across different articles intertwined with various noises, making it hard to aggregate them effectively. 3) Over 20\% of the articles refer to the celebrities' trips indirectly, instead of using the exact celebrity names or location names, leading to large portions of trips escaping regular detecting algorithms.
+We model text content across articles related to each candidate location as a graph to better associate essential information and cancel out the noises. Besides, we design a special pooling layer based on attention mechanism and node similarity, reducing irrelevant information from longer articles. To make up the missing information resulted from indirect mentions, we construct knowledge sub-graphs for named entities (person, organization, facility, etc.). Specifically, we dynamically update embeddings of event entities like the G7 summit from news descriptions since the properties (date and location) of the event change each time, which is not captured by the pre-trained event representations. The proposed CeleTrip jointly trains these modules, which outperforms all baseline models and achieves 82.53\% in the F1 metric.
+By open-sourcing the first tool and a carefully curated dataset for such a new task, we hope to facilitate relevant research in celebrity itinerary mining as well as the social and political analysis built upon the extracted trips.
+
 ## Celebrity Trip Dataset
 We provide a real-word celebrity trip dataset in file `Celebrity Trip Dataset`. We collecte the trips of 26 politicians and 24 artists from January 2016 to February 2021 from [Wikipedia](https://www.wikipedia.org/), and obtain the date and locations. Afterwards, we crawl 2,617,548 news URLs from 01/2016 to 02/2021 from [GDELT](https://www.gdeltproject.org/), and get news articles using URLs from [Newspaper3k](https://github.com/codelucas/newspaper). We label trip locations and non-trip locations from the news articles, using the ground truth trip locations of celebrities provided by Wikipedia.
 
@@ -46,37 +51,9 @@ Please run following commands for training.
 python main_celetrip.py
 ```
 
-
 ### Preprocessing Tools
 
-We open source our preprocessing tool using in our framework, these tools can parse dates and extract locations from numerous articles. 
+We open source our preprocessing tool (Time Detection and Location Extraction) in ```Preprocessing Tools/```.
 
 ## Cite
 Please cite our paper if you find this code useful for your research:
-
- 
-
-
-<!-- Description of this project
-
-
-
-- Celebrity Trip Dataset
-- TKGAT model
-- trips_visualization
-
-## Dataset
-
-This is the dataset of celebrity trips.
-
-
-
-## TKGAT Model
-
-This is the implementation of TKGAT.
-
-
-
-## Trips Visualization
-
-We provide a [tool](http://itin.joycez.xyz/) to visualize the result of our trip-extraction model TKGAT. -->
