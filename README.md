@@ -55,5 +55,11 @@ python main_celetrip.py
 
 We open source our preprocessing tool (Time Detection and Location Extraction) in ```Preprocessing Tools/```.
 
+## Others
+
+We train our model on two Tesla M40. All our data shared from this work will be made FAIR[1].
+
+[1] FORCE11. 2020. The FAIR Data principles. https://force11.org/info/the-fair-data-principles/.
+
 ## Cite
 Please cite our paper if you find this code useful for your research:
