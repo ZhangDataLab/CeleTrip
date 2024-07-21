@@ -63,3 +63,13 @@ We train our model on two Tesla M40. All our data shared from this work will be 
 
 ## Cite
 Please cite our paper if you find this code useful for your research:
+```
+@inproceedings{peng2024did,
+  title={Where Did the President Visit Last Week? Detecting Celebrity Trips from News Articles},
+  author={Peng, Kai and Zhang, Ying and Ling, Shuai and Ke, Zhaoru and Zhang, Haipeng},
+  booktitle={Proceedings of the International AAAI Conference on Web and Social Media},
+  volume={18},
+  pages={1193--1206},
+  year={2024}
+}
+```
